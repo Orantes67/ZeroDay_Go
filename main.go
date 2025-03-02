@@ -1,1 +1,1 @@
-package zerodaygo
+package main
