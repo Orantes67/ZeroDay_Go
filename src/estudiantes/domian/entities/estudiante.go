@@ -1,19 +1,27 @@
 package entities
 
-type estudiante struct {
+type Estudiante struct {
 	id int32
 	name string
 	matricula string
 }
 
-func NewEstudiante(name string, matricula string) *estudiante{
-	return &estudiante{id: 1, name: name, matricula: matricula}
+func NewEstudiante(name string, matricula string) *Estudiante{
+	return &Estudiante{id: 1, name: name, matricula: matricula}
 }
 
-func (e *estudiante) GetName() string {
+func (e *Estudiante) GetName() string {
 	return e.name
 }
 
-func (e *estudiante) SetName(name string) {
+func (e *Estudiante) SetName(name string) {
 	e.name = name
+}
+
+func (e *Estudiante)GetMatricula()string{
+	return e.matricula
+}
+
+func (e *Estudiante)SetMatricula(matricula string){
+	e.matricula = matricula
 }
