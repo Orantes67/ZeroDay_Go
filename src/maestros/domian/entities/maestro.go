@@ -7,9 +7,9 @@ type Maestro struct {
 	Correo   string
 }
 
-func NewMaestro(id int,nombre string, matricula string, correo string) *Maestro{
+func NewMaestro(nombre string, matricula string, correo string) *Maestro{
 	return &Maestro{
-		ID:        id,
+		ID:        1,
 		Nombre:    nombre,
 		Matricula:  matricula,
 		Correo:   correo,

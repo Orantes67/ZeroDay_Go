@@ -8,11 +8,11 @@ type Materia struct {
 	Descripcion string
 }
 
-func NewMateria(id, idProfessor, idEstudiante int, nombre, descripcion string) *Materia {
+func NewMateria( nombre, descripcion string) *Materia {
 	return &Materia{
-		ID: id,
-		IDProfessor: idProfessor,
-		IDEstudiante: idEstudiante,
+		ID: 1,
+		IDProfessor: 1,
+		IDEstudiante: 1,
 		Nombre: nombre,
 		Descripcion: descripcion,
 	}

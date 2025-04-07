@@ -15,11 +15,10 @@ func NewCreateMateria(db domian.IMaestro) *CreateMateria {
 	}
 }
 
-func (c *CreateMateria) Execute(id, idProfessor, idEstudiante int, nombre, descripcion string) (*entities.Materia, error) {
-	materia := entities.NewMateria(id, idProfessor, idEstudiante, nombre, descripcion)
-	err := c.db.Save(materia)
+func (c *CreateMateria) Execute( NewMateria*entities.Materia) error {
+	err := c.db.Save(NewMateria)
 	if err != nil {
-		return nil, err
+		return err
 	}
-	return materia, nil
+	return nil
 }
