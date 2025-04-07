@@ -5,6 +5,7 @@ import (
 	"ZeroDay_Go/src/maestros/domian/entities"
 	"net/http"
 	"github.com/gin-gonic/gin"
+	"ZeroDay_Go/src/server/handler/polling"
 )
 
 type CreateMaestroController struct {
@@ -27,14 +28,16 @@ func (cp_c *CreateMaestroController) Execute(c *gin.Context) {
 		return
 	}
 
-	// Crear instancia de Estudiante antes de llamar a Execute
-	maestro := entities.NewMaestro(data.Correo,data.Matricula,data.Correo)
+	maestro := entities.NewMaestro(data.Nombre, data.Matricula, data.Correo)
 
-	err := cp_c.useCase.Execute(maestro) // Ahora pasamos un solo argumento
+	err := cp_c.useCase.Execute(maestro)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
 	}
+
+	// Notificamos al sistema de polling
+	polling.SetNewMaestroAdded()
 
 	c.JSON(http.StatusCreated, gin.H{"message": "Maestro creado con éxito"})
 }

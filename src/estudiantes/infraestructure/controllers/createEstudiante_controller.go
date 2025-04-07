@@ -4,7 +4,7 @@ import (
 	"ZeroDay_Go/src/estudiantes/application"
 	"ZeroDay_Go/src/estudiantes/domian/entities"
 	"net/http"
-
+	"ZeroDay_Go/src/server/handler/polling"
 	"github.com/gin-gonic/gin"
 )
 
@@ -36,6 +36,9 @@ func (cp_c *CreateEstudianteController) Execute(c *gin.Context) {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
 	}
+
+	polling.SetNewAlumnoAdded()
+	
 
 	c.JSON(http.StatusCreated, gin.H{"message": "Estudiante creado con éxito"})
 }

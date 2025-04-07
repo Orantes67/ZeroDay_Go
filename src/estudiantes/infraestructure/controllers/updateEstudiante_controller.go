@@ -6,6 +6,7 @@ import (
 	"ZeroDay_Go/src/estudiantes/domian/entities"
 	"net/http"
 	"strconv"
+	"ZeroDay_Go/src/server_ZeroDay/handler/polling"
 
 	"github.com/gin-gonic/gin"
 )
@@ -44,6 +45,8 @@ func (ctrl *UpdateEstudianteController) Execute(c *gin.Context) {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
 	}
+
+	polling.SetActualizacionAlumno()
 
 	c.JSON(http.StatusOK, gin.H{"message": "Estudiante actualizado con éxito"})
 }

@@ -3,6 +3,7 @@ package controllers
 import (
 	"ZeroDay_Go/src/maestros/application"
 	"net/http"
+	"ZeroDay_Go/src/server_ZeroDay/handler/polling"
 	
 	"github.com/gin-gonic/gin"
 )
@@ -20,5 +21,6 @@ func (ctrl *ListMaestrosController) Execute(c *gin.Context) {
 		return
 	}
 
+	polling.SetListadoMaestros()
 	c.JSON(http.StatusOK, maestros)
 }

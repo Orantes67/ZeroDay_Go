@@ -22,5 +22,6 @@ func (ctrl *ListEstudiantesController) Execute(c *gin.Context) {
 		return
 	}
 
+
 	c.JSON(http.StatusOK, estudiantes)
 }
