@@ -35,9 +35,9 @@ func (mysql *MySQL) Save(maestro *entities.Maestro) error {
 	return nil
 }
 func (m *MySQL) GetAll() ([]*entities.Maestro, error) {
-	query := "SELECT id, nombre, matricula, correo FROM Maestros"
+	query := "SELECT idMaestros, nombre, matricula, correo FROM Maestros"
 	rows := m.conn.FetchRows(query)
-	
+
 	var maestros []*entities.Maestro
 
 	for rows.Next() {
@@ -54,6 +54,7 @@ func (m *MySQL) GetAll() ([]*entities.Maestro, error) {
 
 	return maestros, nil
 }
+
 // Método para obtener todos los maestros
 
 // Método para actualizar un maestro

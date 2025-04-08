@@ -1,25 +1,22 @@
 package polling
 
-
 import (
+	"github.com/gin-gonic/gin"
 	"net/http"
 	"time"
-
 )
 
-func LongPollingMaestro(w http.ResponseWriter, r *http.Request) {
+func LongPollingMaestro(c *gin.Context) {
 	timeout := time.After(30 * time.Second)
-	CheckAndResetNewMaestro() // Adjusted to call the function from the correct package
 
 	for {
 		select {
 		case <-timeout:
-			http.Error(w, "Timeout sin nuevos maestros", http.StatusRequestTimeout)
+			c.JSON(http.StatusRequestTimeout, gin.H{"error": "Timeout sin nuevos maestros"})
 			return
 		case <-time.After(1 * time.Second):
 			if CheckAndResetNewMaestro() {
-				w.WriteHeader(http.StatusOK)
-				w.Write([]byte(`{"mensaje": "Nuevo maestro agregado"}`))
+				c.JSON(http.StatusOK, gin.H{"mensaje": "Nuevo maestro agregado"})
 				return
 			}
 		}

@@ -1,15 +1,11 @@
 package server
 
-
 import (
 	"ZeroDay_Go/src/server/handler/polling"
-
-	"net/http"
+	"github.com/gin-gonic/gin"
 )
 
-
-
-func Run(mux *http.ServeMux) {
-	mux.HandleFunc("/Longpolling/maestro", polling.LongPollingMaestro)
-	mux.HandleFunc("/shortPolling/alumno", polling.ShortPollingAlumno)
+func Init(r *gin.Engine) {
+	r.GET("/Longpolling/maestro", polling.LongPollingMaestro)
+	r.GET("/shortPolling/alumno", polling.ShortPollingAlumno)
 }

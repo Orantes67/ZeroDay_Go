@@ -1,16 +1,13 @@
 package polling
 
-
 import (
-	"encoding/json"
+	"github.com/gin-gonic/gin"
 	"net/http"
 )
 
-func ShortPollingAlumno(w http.ResponseWriter, r *http.Request) {
-	response := struct {
-		NuevoAlumno bool `json:"nuevo_alumno"`
-	}{
-		NuevoAlumno: CheckNewAlumno(),
+func ShortPollingAlumno(c *gin.Context) {
+	response := gin.H{
+		"nuevo_alumno": CheckNewAlumno(),
 	}
-	json.NewEncoder(w).Encode(response)
+	c.JSON(http.StatusOK, response)
 }
